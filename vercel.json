@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/app/:kategoria/:id",
+      "destination": "/produkt.html"
+    }
+  ]
+}
