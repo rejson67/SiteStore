@@ -1,0 +1,16 @@
+[
+  {
+    "id": "remove-bg",
+    "kategoria": "narzedzia",
+    "title": "Remove.bg",
+    "logo": "https://placehold.co/150x150/0056b3/white?text=Remove.bg",
+    "rating": 4.9
+  },
+  {
+    "id": "slow-roads",
+    "kategoria": "gry",
+    "title": "Slow Roads",
+    "logo": "https://placehold.co/150x150/2e8b57/white?text=Slow+Roads",
+    "rating": 4.8
+  }
+]
