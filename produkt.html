@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiteStore - Aplikacja</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="/" style="text-decoration: none; color: #007aff;">← Wróć do SiteStore</a>
+        
+        <div class="product-header" style="margin-top: 20px;">
+            <img id="p-logo" class="product-logo" src="" alt="Logo">
+            <div>
+                <h1 id="p-title">Ładowanie...</h1>
+                <p style="color: gray;" id="p-category"></p>
+                <p>⭐ <span id="p-rating"></span></p>
+                <a id="p-link" href="#" target="_blank" class="open-btn">OTWÓRZ</a>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 30px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+            <h3>Opis</h3>
+            <p id="p-desc" style="line-height: 1.6;"></p>
+            <img id="p-screen" class="product-screenshot" src="" alt="Screenshot">
+        </div>
+    </div>
+
+    <script>
+        // Pobieramy kategorię i ID z adresu URL (np. z /app/gry/slow-roads)
+        const path = window.location.pathname;
+        const parts = path.split('/');
+        const kategoria = parts[2]; 
+        const id = parts[3];
+
+        // Pobieramy odpowiedni plik JSON
+        fetch(`/data/${kategoria}/${id}/info.json`)
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('p-title').innerText = data.title;
+                document.getElementById('p-category').innerText = data.category;
+                document.getElementById('p-rating').innerText = data.rating;
+                document.getElementById('p-desc').innerText = data.description;
+                
+                document.getElementById('p-logo').src = data.logo;
+                document.getElementById('p-screen').src = data.screenshot;
+                
+                document.getElementById('p-link').href = data.url;
+                document.title = `${data.title} - SiteStore`;
+            })
+            .catch(error => {
+                document.getElementById('p-title').innerText = "Nie znaleziono strony";
+            });
+    </script>
+</body>
+</html>
